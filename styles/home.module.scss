@@ -1,0 +1,109 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.heroTitle {
+  font-size: 48px;
+  letter-spacing: -0.02em;
+  margin: 0 0 10px;
+}
+
+.heroText {
+  font-size: 18px;
+  line-height: 1.7;
+  margin: 0;
+  max-width: 70ch;
+}
+
+.sectionHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.sectionTitle {
+  font-size: 28px;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+/* Project cards with thumbs */
+.projectCard {
+  padding: 0;
+  overflow: hidden;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease;
+}
+
+.projectCard:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+.thumb {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.thumbPlaceholder {
+  background:
+    radial-gradient(1200px 300px at 10% 0%, rgba(110, 168, 254, 0.22), transparent 60%),
+    radial-gradient(900px 260px at 90% 20%, rgba(255, 255, 255, 0.08), transparent 55%),
+    rgba(255, 255, 255, 0.02);
+}
+
+.thumbImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.02);
+  transition: transform 220ms ease;
+  display: block;
+}
+
+.projectCard:hover .thumbImg {
+  transform: scale(1.06);
+}
+
+.thumbOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(11, 15, 26, 0), rgba(11, 15, 26, 0.35));
+  pointer-events: none;
+}
+
+.cardBody {
+  padding: 16px;
+}
+
+.cardTitle {
+  margin: 0;
+  font-size: 20px;
+  letter-spacing: -0.01em;
+}
+
+.cardText {
+  line-height: 1.65;
+  margin: 6px 0 10px;
+}
+
+.cardStack {
+  margin: 0;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .projectCard,
+  .thumbImg {
+    transition: none;
+  }
+}

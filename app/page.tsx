@@ -1,65 +1,101 @@
+import Link from "next/link";
+import { projects } from "@/data/projects";
+import styles from "@/styles/home.module.scss";
+import { site } from "@/data/site";
 import Image from "next/image";
 
-export default function Home() {
+export default function HomePage() {
+  const featured = projects.slice(0, 3);
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
+    <div className={styles.wrapper}>
+      <section className="card">
+        <h1 className={styles.heroTitle}>Hi, my name is {site.shortName} </h1>
+        <p className={`muted ${styles.heroText}`}>
+          Software developer with a focus on full-stack web apps. I build clean, reliable
+          systems and enjoy turning ideas into usable products.
+        </p>
+
+        <div className="btnRow">
+          <Link className="btn btnPrimary" href="/projects">
+            View projects
+          </Link>
+          <Link className="btn" href="/cv">
+            View CV
+          </Link>
           <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            className="btn"
+            href={site.linkedin}
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
+            LinkedIn
           </a>
         </div>
-      </main>
+      </section>
+
+      <section>
+        <div className={styles.sectionHead}>
+          <h2 className={styles.sectionTitle}>Featured projects</h2>
+          <Link className="muted" href="/projects">
+            See all →
+          </Link>
+        </div>
+
+        <div className="grid">
+          {featured.map((p) => (
+            <article key={p.title} className={`card ${styles.projectCard}`}>
+              {p.image ? (
+                <div className={styles.thumb}>
+                  <Image
+                    className={styles.thumbImg}
+                    src={p.image}
+                    alt={`${p.title} preview`}
+                    fill
+                  />
+                  <div className={styles.thumbOverlay} />
+                </div>
+              ) : (
+                <div className={`${styles.thumb} ${styles.thumbPlaceholder}`}>
+                  <div className={styles.thumbOverlay} />
+                </div>
+              )}
+
+              <div className={styles.cardBody}>
+                <h3 className={styles.cardTitle}>{p.title}</h3>
+                <div className="pill">{p.kind}</div>
+
+                <p className={`muted ${styles.cardText}`}>{p.description}</p>
+
+                <p className={`muted ${styles.cardStack}`}>
+                  <strong>Stack:</strong> {p.stack.join(", ")}
+                </p>
+
+                <div className="btnRow">
+                  {p.live && (
+                    <a
+                      className="btn"
+                      href={p.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Live
+                    </a>
+                  )}
+                  <a
+                    className="btn"
+                    href={p.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    GitHub
+                  </a>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
     </div>
   );
 }

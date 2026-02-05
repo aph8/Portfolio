@@ -1,0 +1,229 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* FULL BLEED: break out of the centered container */
+.fullBleed {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  border-bottom: 1px solid var(--border);
+}
+
+.splitHero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 340px;
+}
+
+.half {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+}
+
+.heroImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.02);
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(11, 15, 26, 0), rgba(11, 15, 26, 0.55));
+  pointer-events: none;
+}
+
+.caption {
+  position: absolute;
+  left: 16px;
+  bottom: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.captionTitle {
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  font-size: 20px;
+}
+
+.captionSub {
+  font-size: 0.95rem;
+  line-height: 1.2;
+}
+
+/* Optional: thin divider between halves */
+.half + .half {
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.heroCard {
+  margin-top: 6px;
+}
+
+.title {
+  margin: 0;
+  font-size: 44px;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  margin: 8px 0 0;
+  line-height: 1.65;
+  max-width: 75ch;
+}
+
+.pills {
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text);
+  font-size: 0.9rem;
+}
+
+.sectionTitle {
+  margin: 0 0 10px;
+  font-size: 20px;
+}
+
+.text {
+  margin: 0;
+  line-height: 1.75;
+  max-width: 85ch;
+}
+
+.grid3 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.feature {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.featureTitle {
+  margin: 0 0 8px;
+  font-size: 16px;
+}
+
+.featureText {
+  margin: 0;
+  line-height: 1.65;
+}
+
+.sectionHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.projectGrid {
+  margin-top: 12px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.projectCard {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.projectTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.projectTitle {
+  margin: 0;
+  font-size: 18px;
+}
+
+.kind {
+  display: inline-flex;
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.smallLink {
+  color: var(--text);
+  opacity: 0.9;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  transition:
+    opacity 150ms ease,
+    border-color 150ms ease;
+}
+
+.smallLink:hover {
+  opacity: 1;
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+.projectText {
+  margin: 10px 0 10px;
+  line-height: 1.65;
+}
+
+.projectStack {
+  margin: 0;
+}
+
+.cta {
+  border-color: rgba(110, 168, 254, 0.25);
+}
+
+@media (max-width: 900px) {
+  .splitHero {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+
+  .half {
+    height: 220px;
+  }
+
+  .half + .half {
+    border-left: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .grid3 {
+    grid-template-columns: 1fr;
+  }
+
+  .projectGrid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,51 @@
+.header {
+  border-bottom: 1px solid var(--border);
+}
+
+.inner {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 14px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand {
+  font-weight: 700;
+}
+
+.nav {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.navLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: 12px;
+  transition:
+    background 150ms ease,
+    color 150ms ease;
+}
+
+.navLink:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.arrow {
+  display: inline-block;
+  opacity: 0.85;
+  transition:
+    transform 150ms ease,
+    opacity 150ms ease;
+}
+
+.navLink:hover .arrow {
+  transform: translate(2px, -2px);
+  opacity: 1;
+}

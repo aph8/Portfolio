@@ -1,0 +1,185 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+.title {
+  font-size: 44px;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  margin: 0;
+  line-height: 1.6;
+  max-width: 75ch;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 14px;
+  align-items: start;
+}
+
+.sidebar {
+  position: sticky;
+  top: 14px;
+  padding: 16px;
+  height: fit-content;
+}
+
+.sidebarTop {
+  display: grid;
+  gap: 12px;
+}
+
+.links {
+  display: grid;
+  gap: 8px;
+}
+
+.link {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.02);
+  transition:
+    background 150ms ease,
+    border-color 150ms ease;
+}
+
+.link:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+.divider {
+  height: 1px;
+  background: var(--border);
+  margin: 14px 0;
+}
+
+.sidebarSection {
+  display: grid;
+  gap: 10px;
+}
+
+.sidebarTitle {
+  margin: 0;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.main {
+  display: grid;
+  gap: 14px;
+}
+
+.sectionTitle {
+  margin: 0 0 8px;
+  font-size: 20px;
+}
+
+.text {
+  margin: 0;
+  line-height: 1.65;
+}
+
+.skillGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.skillBlock {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.skillTitle {
+  margin: 0 0 10px;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text);
+  font-size: 0.9rem;
+}
+
+.compactList {
+  margin: 0;
+  padding-left: 18px;
+  line-height: 1.7;
+}
+
+.item {
+  margin-top: 8px;
+}
+
+.itemTop {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+
+.itemTitle {
+  font-weight: 700;
+}
+
+.itemMeta {
+  white-space: nowrap;
+}
+
+.list {
+  margin: 8px 0 0;
+  padding-left: 18px;
+  line-height: 1.8;
+}
+
+@media (max-width: 860px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    position: relative;
+    top: auto;
+  }
+
+  .skillGrid {
+    grid-template-columns: 1fr;
+  }
+}
