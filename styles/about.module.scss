@@ -9,12 +9,19 @@
   width: 100vw;
   margin-left: calc(50% - 50vw);
   border-bottom: 1px solid var(--border);
+
+  /* keep hero behind cards/buttons */
+  position: relative;
+  z-index: 0;
 }
 
 .splitHero {
   display: grid;
   grid-template-columns: 1fr 1fr;
   height: 340px;
+
+  position: relative;
+  z-index: 0;
 }
 
 .half {
@@ -33,7 +40,11 @@
 .overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, rgba(11, 15, 26, 0), rgba(11, 15, 26, 0.55));
+  background: linear-gradient(
+    to bottom,
+    rgba(11, 15, 26, 0),
+    rgba(11, 15, 26, 0.55)
+  );
   pointer-events: none;
 }
 
@@ -64,6 +75,10 @@
 
 .heroCard {
   margin-top: 6px;
+
+  /* keep card above hero layers */
+  position: relative;
+  z-index: 5;
 }
 
 .title {
@@ -181,9 +196,7 @@
   color: var(--text);
   opacity: 0.9;
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-  transition:
-    opacity 150ms ease,
-    border-color 150ms ease;
+  transition: opacity 150ms ease, border-color 150ms ease;
 }
 
 .smallLink:hover {
@@ -202,6 +215,22 @@
 
 .cta {
   border-color: rgba(110, 168, 254, 0.25);
+
+  /* keep CTA above hero layers */
+  position: relative;
+  z-index: 5;
+}
+
+/* btnRow is global (not a module class), so target it via :global */
+:global(.btnRow) {
+  position: relative;
+  z-index: 10;
+}
+
+:global(.btnRow) a,
+:global(.btnRow) button {
+  position: relative;
+  z-index: 10;
 }
 
 @media (max-width: 900px) {

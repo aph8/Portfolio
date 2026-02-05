@@ -7,45 +7,51 @@ import Image from "next/image";
 export default function AboutPage() {
   const featured = projects.slice(0, 3);
 
+  // Note: "From/Sender" cannot be auto-filled with mailto.
+  // The sender will always be the user's default email account.
+  // We CAN prefill the subject.
+  const mailtoHref = `mailto:${site.email}?subject=${encodeURIComponent(
+    "Portfolio – Contact"
+  )}`;
+
   return (
     <div className={styles.wrapper}>
-     {/* FULL-BLEED 50/50 HERO IMAGES */}
-<section className={styles.fullBleed}>
-  <div className={styles.splitHero}>
-    <figure className={styles.half}>
-      <Image
-        className={styles.heroImg}
-        src="/akureyri.jpg"
-        alt="Akureyri"
-        fill
-        priority
-        sizes="(max-width: 900px) 100vw, 50vw"
-      />
-      <div className={styles.overlay} />
-      <figcaption className={styles.caption}>
-        <span className={styles.captionTitle}>Akureyri</span>
-        <span className={`muted ${styles.captionSub}`}>First 12 years</span>
-      </figcaption>
-    </figure>
+      {/* FULL-BLEED 50/50 HERO IMAGES */}
+      <section className={styles.fullBleed}>
+        <div className={styles.splitHero}>
+          <figure className={styles.half}>
+            <Image
+              className={styles.heroImg}
+              src="/akureyri.jpg"
+              alt="Akureyri"
+              fill
+              priority
+              sizes="(max-width: 900px) 100vw, 50vw"
+            />
+            <div className={styles.overlay} />
+            <figcaption className={styles.caption}>
+              <span className={styles.captionTitle}>Akureyri</span>
+              <span className={`muted ${styles.captionSub}`}>First 12 years</span>
+            </figcaption>
+          </figure>
 
-    <figure className={styles.half}>
-      <Image
-        className={styles.heroImg}
-        src="/moso.jpg"
-        alt="Mosfellsbær"
-        fill
-        priority
-        sizes="(max-width: 900px) 100vw, 50vw"
-      />
-      <div className={styles.overlay} />
-      <figcaption className={styles.caption}>
-        <span className={styles.captionTitle}>Mosfellsbær</span>
-        <span className={`muted ${styles.captionSub}`}>After that</span>
-      </figcaption>
-    </figure>
-  </div>
-</section>
-
+          <figure className={styles.half}>
+            <Image
+              className={styles.heroImg}
+              src="/moso.jpg"
+              alt="Mosfellsbær"
+              fill
+              priority
+              sizes="(max-width: 900px) 100vw, 50vw"
+            />
+            <div className={styles.overlay} />
+            <figcaption className={styles.caption}>
+              <span className={styles.captionTitle}>Mosfellsbær</span>
+              <span className={`muted ${styles.captionSub}`}>After that</span>
+            </figcaption>
+          </figure>
+        </div>
+      </section>
 
       {/* CONTENT HERO CARD */}
       <header className={`card ${styles.heroCard}`}>
@@ -70,7 +76,9 @@ export default function AboutPage() {
           <Link className="btn" href="/cv">
             View CV
           </Link>
-          <a className="btn" href={`mailto:${site.email}`}>
+
+          {/* Opens user's default mail app with a prefilled subject */}
+          <a className="btn" href={mailtoHref}>
             Email me
           </a>
         </div>
@@ -135,6 +143,7 @@ export default function AboutPage() {
                   <h3 className={styles.projectTitle}>{p.title}</h3>
                   <span className={styles.kind}>{p.kind}</span>
                 </div>
+
                 <div className={styles.actions}>
                   {p.live && (
                     <a
@@ -172,23 +181,17 @@ export default function AboutPage() {
           I’m looking for junior roles where I can contribute as a full-stack developer
           and keep growing. If you think I could be a good fit, I’d love to talk.
         </p>
+
         <div className="btnRow">
-          <a
-            className="btn btnPrimary"
-            href={`mailto:${site.email}?subject=${encodeURIComponent("Portfolio – Contact")}`}
-          >
+          {/* Opens user's default mail app with a prefilled subject */}
+          <a className="btn btnPrimary" href={mailtoHref}>
             Contact
           </a>
 
           <a className="btn" href={site.github} target="_blank" rel="noopener noreferrer">
             GitHub ↗
           </a>
-          <a
-            className="btn"
-            href={site.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a className="btn" href={site.linkedin} target="_blank" rel="noopener noreferrer">
             LinkedIn ↗
           </a>
         </div>
