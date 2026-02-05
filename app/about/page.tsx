@@ -191,7 +191,12 @@ export default function AboutPage() {
           <a className="btn" href={site.github} target="_blank" rel="noopener noreferrer">
             GitHub ↗
           </a>
-          <a className="btn" href={site.linkedin} target="_blank" rel="noopener noreferrer">
+          <a
+            className="btn"
+            href={site.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             LinkedIn ↗
           </a>
         </div>

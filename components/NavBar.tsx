@@ -2,20 +2,13 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
 import styles from "@/styles/navbar.module.scss";
 import { site } from "@/data/site";
 
 export default function NavBar() {
   const [open, setOpen] = useState(false);
-  const pathname = usePathname();
 
-  // Loka menu þegar skipt er um route
-  useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
-
-  // Loka með ESC
+  // Loka með ESC (þetta er OK, því setState er kallað í event handler)
   useEffect(() => {
     function onKeyDown(e: KeyboardEvent) {
       if (e.key === "Escape") setOpen(false);
@@ -24,10 +17,13 @@ export default function NavBar() {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, []);
 
+  const closeMenu = () => setOpen(false);
+  const toggleMenu = () => setOpen((v) => !v);
+
   return (
     <header className={styles.header}>
       <div className={styles.inner}>
-        <Link className={styles.brand} href="/">
+        <Link className={styles.brand} href="/" onClick={closeMenu}>
           {site.brand ?? site.name ?? "Portfolio"}
         </Link>
 
@@ -59,7 +55,7 @@ export default function NavBar() {
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
           aria-controls="mobile-menu"
-          onClick={() => setOpen((v) => !v)}
+          onClick={toggleMenu}
         >
           <span className={styles.burgerLines} aria-hidden="true">
             <span />
@@ -76,7 +72,7 @@ export default function NavBar() {
           type="button"
           className={styles.backdrop}
           aria-label="Close menu"
-          onClick={() => setOpen(false)}
+          onClick={closeMenu}
         />
 
         <nav
@@ -84,13 +80,13 @@ export default function NavBar() {
           className={styles.mobileMenu}
           aria-label="Mobile navigation"
         >
-          <Link className={styles.mobileLink} href="/about">
+          <Link className={styles.mobileLink} href="/about" onClick={closeMenu}>
             About
           </Link>
-          <Link className={styles.mobileLink} href="/projects">
+          <Link className={styles.mobileLink} href="/projects" onClick={closeMenu}>
             Projects
           </Link>
-          <Link className={styles.mobileLink} href="/cv">
+          <Link className={styles.mobileLink} href="/cv" onClick={closeMenu}>
             CV
           </Link>
           <a
@@ -98,6 +94,7 @@ export default function NavBar() {
             href={site.github}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={closeMenu}
           >
             Code on GitHub ↗
           </a>

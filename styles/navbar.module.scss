@@ -34,7 +34,9 @@
   gap: 6px;
   padding: 6px 10px;
   border-radius: 12px;
-  transition: background 150ms ease, color 150ms ease;
+  transition:
+    background 150ms ease,
+    color 150ms ease;
 }
 
 .navLink:hover {
@@ -44,7 +46,9 @@
 .arrow {
   display: inline-block;
   opacity: 0.85;
-  transition: transform 150ms ease, opacity 150ms ease;
+  transition:
+    transform 150ms ease,
+    opacity 150ms ease;
 }
 
 .navLink:hover .arrow {
@@ -131,7 +135,9 @@
 
     transform: translateY(-8px);
     opacity: 0;
-    transition: transform 160ms ease, opacity 160ms ease;
+    transition:
+      transform 160ms ease,
+      opacity 160ms ease;
     pointer-events: none;
   }
 
