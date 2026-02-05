@@ -1,7 +1,7 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: clamp(10px, 2vw, 14px);
 }
 
 /* FULL BLEED: break out of the centered container */
@@ -18,7 +18,7 @@
 .splitHero {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  height: 340px;
+  height: clamp(220px, 35vw, 340px);
 
   position: relative;
   z-index: 0;
@@ -40,11 +40,7 @@
 .overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(11, 15, 26, 0),
-    rgba(11, 15, 26, 0.55)
-  );
+  background: linear-gradient(to bottom, rgba(11, 15, 26, 0), rgba(11, 15, 26, 0.55));
   pointer-events: none;
 }
 
@@ -60,7 +56,7 @@
 .captionTitle {
   font-weight: 800;
   letter-spacing: -0.01em;
-  font-size: 20px;
+  font-size: clamp(16px, 2.2vw, 20px);
 }
 
 .captionSub {
@@ -83,7 +79,7 @@
 
 .title {
   margin: 0;
-  font-size: 44px;
+  font-size: clamp(28px, 4.5vw, 44px);
   letter-spacing: -0.02em;
 }
 
@@ -91,6 +87,7 @@
   margin: 8px 0 0;
   line-height: 1.65;
   max-width: 75ch;
+  font-size: clamp(14px, 1.7vw, 18px);
 }
 
 .pills {
@@ -113,7 +110,7 @@
 
 .sectionTitle {
   margin: 0 0 10px;
-  font-size: 20px;
+  font-size: clamp(18px, 2.4vw, 20px);
 }
 
 .text {
@@ -151,6 +148,7 @@
   align-items: baseline;
   gap: 12px;
   margin-bottom: 10px;
+  flex-wrap: wrap;
 }
 
 .projectGrid {
@@ -233,6 +231,12 @@
   z-index: 10;
 }
 
+@media (max-width: 1100px) {
+  .grid3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 @media (max-width: 900px) {
   .splitHero {
     grid-template-columns: 1fr;
@@ -254,5 +258,12 @@
 
   .projectGrid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .caption {
+    left: 12px;
+    bottom: 12px;
   }
 }

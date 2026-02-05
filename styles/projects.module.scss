@@ -1,11 +1,11 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: clamp(10px, 2vw, 12px);
 }
 
 .title {
-  font-size: 44px;
+  font-size: clamp(28px, 4.5vw, 44px);
   margin: 0;
   letter-spacing: -0.02em;
 }
@@ -14,6 +14,7 @@
   margin: 0 0 10px;
   line-height: 1.6;
   max-width: 70ch;
+  font-size: clamp(14px, 1.7vw, 18px);
 }
 
 /* Project cards with thumbs */
@@ -67,12 +68,12 @@
 }
 
 .cardBody {
-  padding: 16px;
+  padding: clamp(14px, 2vw, 16px);
 }
 
 .cardTitle {
   margin: 0;
-  font-size: 20px;
+  font-size: clamp(18px, 2vw, 20px);
   letter-spacing: -0.01em;
 }
 

@@ -1,17 +1,17 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: clamp(14px, 2vw, 18px);
 }
 
 .heroTitle {
-  font-size: 48px;
+  font-size: clamp(30px, 5vw, 48px);
   letter-spacing: -0.02em;
   margin: 0 0 10px;
 }
 
 .heroText {
-  font-size: 18px;
+  font-size: clamp(15px, 1.8vw, 18px);
   line-height: 1.7;
   margin: 0;
   max-width: 70ch;
@@ -22,11 +22,12 @@
   justify-content: space-between;
   align-items: baseline;
   gap: 14px;
-  margin-top: 18px;
+  margin-top: clamp(14px, 2.6vw, 18px);
+  flex-wrap: wrap;
 }
 
 .sectionTitle {
-  font-size: 28px;
+  font-size: clamp(20px, 3vw, 28px);
   margin: 0;
   letter-spacing: -0.01em;
 }
@@ -82,12 +83,12 @@
 }
 
 .cardBody {
-  padding: 16px;
+  padding: clamp(14px, 2vw, 16px);
 }
 
 .cardTitle {
   margin: 0;
-  font-size: 20px;
+  font-size: clamp(18px, 2vw, 20px);
   letter-spacing: -0.01em;
 }
 

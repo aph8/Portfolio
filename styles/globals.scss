@@ -7,7 +7,9 @@
   --border: rgba(255, 255, 255, 0.08);
 }
 
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -15,6 +17,10 @@ html,
 body {
   padding: 0;
   margin: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -27,6 +33,17 @@ body {
     Segoe UI,
     Roboto,
     Arial;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Media elements */
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
+  height: auto;
 }
 
 a {
@@ -35,16 +52,24 @@ a {
 }
 
 .container {
-  max-width: 980px;
+  width: min(1100px, 100% - 32px);
   margin: 0 auto;
-  padding: 28px 16px 60px;
+  padding: clamp(20px, 3vw, 28px) 0 clamp(48px, 6vw, 60px);
 }
 
 .card {
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: 16px;
-  padding: 16px;
+  padding: clamp(14px, 2vw, 16px);
+}
+
+/* Prevent decorative overlays from blocking clicks */
+.card::before,
+.card::after,
+.btn::before,
+.btn::after {
+  pointer-events: none;
 }
 
 .grid {
@@ -63,9 +88,11 @@ a {
 .btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   border-radius: 12px;
   padding: 10px 12px;
+  min-height: 44px; /* better tap target on mobile */
   border: 1px solid var(--border);
   background: transparent;
   color: var(--text);
@@ -78,6 +105,15 @@ a {
 
 .btn:hover {
   background: rgba(255, 255, 255, 0.03);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn:focus-visible {
+  outline: 2px solid rgba(110, 168, 254, 0.6);
+  outline-offset: 2px;
 }
 
 .btnPrimary {
@@ -107,4 +143,13 @@ a {
   line-height: 1;
   width: fit-content;
   margin: 6px 0 10px;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    scroll-behavior: auto !important;
+    transition: none !important;
+    animation: none !important;
+  }
 }
