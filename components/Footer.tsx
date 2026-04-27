@@ -1,3 +1,5 @@
+"use client";
+
 import styles from "@/styles/footer.module.scss";
 import { site } from "@/data/site";
 

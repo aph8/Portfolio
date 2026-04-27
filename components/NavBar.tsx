@@ -2,13 +2,24 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import styles from "@/styles/navbar.module.scss";
 import { site } from "@/data/site";
+import { useLanguage, useT } from "@/context/LanguageContext";
+import { tr } from "@/data/translations";
 
 export default function NavBar() {
   const [open, setOpen] = useState(false);
+  const { lang, toggleLang } = useLanguage();
+  const t = useT();
+  const pathname = usePathname();
 
-  // Loka með ESC (þetta er OK, því setState er kallað í event handler)
+  const navClass = (href: string) =>
+    `${styles.navLink} ${pathname === href ? styles.navLinkActive : ""}`;
+  const mobileNavClass = (href: string) =>
+    `${styles.mobileLink} ${pathname === href ? styles.mobileLinkActive : ""}`;
+
+  // Close with ESC (setState is called inside an event handler, so this is fine)
   useEffect(() => {
     function onKeyDown(e: KeyboardEvent) {
       if (e.key === "Escape") setOpen(false);
@@ -29,14 +40,14 @@ export default function NavBar() {
 
         {/* Desktop nav */}
         <nav className={styles.navDesktop} aria-label="Main navigation">
-          <Link className={styles.navLink} href="/about">
-            About
+          <Link className={navClass("/about")} href="/about">
+            {t(tr.nav.about)}
           </Link>
-          <Link className={styles.navLink} href="/projects">
-            Projects
+          <Link className={navClass("/projects")} href="/projects">
+            {t(tr.nav.projects)}
           </Link>
-          <Link className={styles.navLink} href="/cv">
-            CV
+          <Link className={navClass("/cv")} href="/cv">
+            {t(tr.nav.cv)}
           </Link>
           <a
             className={styles.navLink}
@@ -44,8 +55,17 @@ export default function NavBar() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Code on GitHub <span className={styles.arrow}>↗</span>
+            {t(tr.nav.github)} <span className={styles.arrow}>↗</span>
           </a>
+
+          <button
+            type="button"
+            className={styles.langToggle}
+            onClick={toggleLang}
+            aria-label={lang === "en" ? "Switch to Icelandic" : "Switch to English"}
+          >
+            {lang === "en" ? "IS" : "EN"}
+          </button>
         </nav>
 
         {/* Hamburger button (mobile) */}
@@ -80,14 +100,14 @@ export default function NavBar() {
           className={styles.mobileMenu}
           aria-label="Mobile navigation"
         >
-          <Link className={styles.mobileLink} href="/about" onClick={closeMenu}>
-            About
+          <Link className={mobileNavClass("/about")} href="/about" onClick={closeMenu}>
+            {t(tr.nav.about)}
           </Link>
-          <Link className={styles.mobileLink} href="/projects" onClick={closeMenu}>
-            Projects
+          <Link className={mobileNavClass("/projects")} href="/projects" onClick={closeMenu}>
+            {t(tr.nav.projects)}
           </Link>
-          <Link className={styles.mobileLink} href="/cv" onClick={closeMenu}>
-            CV
+          <Link className={mobileNavClass("/cv")} href="/cv" onClick={closeMenu}>
+            {t(tr.nav.cv)}
           </Link>
           <a
             className={styles.mobileLink}
@@ -96,8 +116,16 @@ export default function NavBar() {
             rel="noopener noreferrer"
             onClick={closeMenu}
           >
-            Code on GitHub ↗
+            {t(tr.nav.github)} ↗
           </a>
+
+          <button
+            type="button"
+            className={styles.mobileLangToggle}
+            onClick={() => { toggleLang(); closeMenu(); }}
+          >
+            {lang === "en" ? "🇮🇸 Íslenska" : "🇬🇧 English"}
+          </button>
         </nav>
       </div>
     </header>

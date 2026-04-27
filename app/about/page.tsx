@@ -1,15 +1,18 @@
+"use client";
+
 import Link from "next/link";
 import { site } from "@/data/site";
 import { projects } from "@/data/projects";
 import styles from "@/styles/about.module.scss";
 import Image from "next/image";
+import { useT, useLanguage } from "@/context/LanguageContext";
+import { tr } from "@/data/translations";
 
 export default function AboutPage() {
+  const t = useT();
+  const { lang } = useLanguage();
   const featured = projects.slice(0, 3);
 
-  // Note: "From/Sender" cannot be auto-filled with mailto.
-  // The sender will always be the user's default email account.
-  // We CAN prefill the subject.
   const mailtoHref = `mailto:${site.email}?subject=${encodeURIComponent(
     "Portfolio – Contact"
   )}`;
@@ -31,7 +34,7 @@ export default function AboutPage() {
             <div className={styles.overlay} />
             <figcaption className={styles.caption}>
               <span className={styles.captionTitle}>Akureyri</span>
-              <span className={`muted ${styles.captionSub}`}>First 12 years</span>
+              <span className={`muted ${styles.captionSub}`}>{t(tr.about.firstYears)}</span>
             </figcaption>
           </figure>
 
@@ -47,7 +50,7 @@ export default function AboutPage() {
             <div className={styles.overlay} />
             <figcaption className={styles.caption}>
               <span className={styles.captionTitle}>Mosfellsbær</span>
-              <span className={`muted ${styles.captionSub}`}>After that</span>
+              <span className={`muted ${styles.captionSub}`}>{t(tr.about.afterThat)}</span>
             </figcaption>
           </figure>
         </div>
@@ -55,72 +58,51 @@ export default function AboutPage() {
 
       {/* CONTENT HERO CARD */}
       <header className={`card ${styles.heroCard}`}>
-        <h1 className={styles.title}>About</h1>
-        <p className={`muted ${styles.subtitle}`}>
-          I’m a newly graduated Computer Scientist in Iceland with a strong full-stack
-          profile — comfortable building both front-end and back-end systems.
-        </p>
+        <h1 className={styles.title}>{t(tr.about.title)}</h1>
+        <p className={`muted ${styles.subtitle}`}>{t(tr.about.subtitle)}</p>
 
         <div className={styles.pills}>
-          {["Full-stack", "Clean code", "Testing mindset", "UX-focused"].map((t) => (
-            <span key={t} className={styles.pill}>
-              {t}
+          {tr.about.pills[lang].map((pill) => (
+            <span key={pill} className={styles.pill}>
+              {pill}
             </span>
           ))}
         </div>
 
         <div className="btnRow">
           <Link className="btn btnPrimary" href="/projects">
-            View projects
+            {t(tr.about.viewProjects)}
           </Link>
           <Link className="btn" href="/cv">
-            View CV
+            {t(tr.about.viewCv)}
           </Link>
-
-          {/* Opens user's default mail app with a prefilled subject */}
           <a className="btn" href={mailtoHref}>
-            Email me
+            {t(tr.about.emailMe)}
           </a>
         </div>
       </header>
 
       <section className="card">
-        <h2 className={styles.sectionTitle}>My story</h2>
-        <p className={`muted ${styles.text}`}>
-          I spent my first 12 years in Akureyri and later moved to Mosfellsbær. I’ve
-          always been interested in technology and computers — I grew up playing a lot of
-          games, which is what initially pulled me towards Computer Science. I hadn’t
-          written code before starting the degree, but I quickly found that I enjoy the
-          process of building real systems: making ideas concrete, debugging, polishing,
-          and shipping.
-        </p>
+        <h2 className={styles.sectionTitle}>{t(tr.about.myStory)}</h2>
+        <p className={`muted ${styles.text}`}>{t(tr.about.storyText)}</p>
       </section>
 
       <section className="card">
-        <h2 className={styles.sectionTitle}>How I work</h2>
+        <h2 className={styles.sectionTitle}>{t(tr.about.howIWork)}</h2>
         <div className={styles.grid3}>
           <div className={styles.feature}>
-            <h3 className={styles.featureTitle}>Clean code</h3>
-            <p className={`muted ${styles.featureText}`}>
-              I aim for readable, maintainable solutions. Clear naming, small modules, and
-              structure that makes future changes easy.
-            </p>
+            <h3 className={styles.featureTitle}>{t(tr.about.cleanCode)}</h3>
+            <p className={`muted ${styles.featureText}`}>{t(tr.about.cleanCodeText)}</p>
           </div>
 
           <div className={styles.feature}>
-            <h3 className={styles.featureTitle}>Testing mindset</h3>
-            <p className={`muted ${styles.featureText}`}>
-              I like knowing things work. When it makes sense, I add tests and validation
-              to reduce surprises and improve confidence.
-            </p>
+            <h3 className={styles.featureTitle}>{t(tr.about.testingMindset)}</h3>
+            <p className={`muted ${styles.featureText}`}>{t(tr.about.testingMindsetText)}</p>
           </div>
 
           <div className={styles.feature}>
-            <h3 className={styles.featureTitle}>UX focus</h3>
-            <p className={`muted ${styles.featureText}`}>
-              I pay attention to the user experience — good structure, clear navigation,
-              and UI that feels polished and intentional.
-            </p>
+            <h3 className={styles.featureTitle}>{t(tr.about.uxFocus)}</h3>
+            <p className={`muted ${styles.featureText}`}>{t(tr.about.uxFocusText)}</p>
           </div>
         </div>
       </section>
@@ -128,10 +110,10 @@ export default function AboutPage() {
       <section className="card">
         <div className={styles.sectionHead}>
           <h2 className={styles.sectionTitle} style={{ margin: 0 }}>
-            Proof in projects
+            {t(tr.about.proofInProjects)}
           </h2>
           <Link className="muted" href="/projects">
-            See all →
+            {t(tr.about.seeAll)}
           </Link>
         </div>
 
@@ -155,20 +137,24 @@ export default function AboutPage() {
                       Live ↗
                     </a>
                   )}
-                  <a
-                    className={styles.smallLink}
-                    href={p.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Code ↗
-                  </a>
+                  {p.github && (
+                    <a
+                      className={styles.smallLink}
+                      href={p.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Code ↗
+                    </a>
+                  )}
                 </div>
               </div>
 
-              <p className={`muted ${styles.projectText}`}>{p.description}</p>
+              <p className={`muted ${styles.projectText}`}>
+                {t({ en: p.description, is: p.descriptionIs ?? p.description })}
+              </p>
               <p className={`muted ${styles.projectStack}`}>
-                <strong>Stack:</strong> {p.stack.join(", ")}
+                <strong>{t(tr.common.stack)}</strong> {p.stack.join(", ")}
               </p>
             </article>
           ))}
@@ -176,27 +162,17 @@ export default function AboutPage() {
       </section>
 
       <section className={`card ${styles.cta}`}>
-        <h2 className={styles.sectionTitle}>Open to opportunities in Iceland</h2>
-        <p className={`muted ${styles.text}`}>
-          I’m looking for junior roles where I can contribute as a full-stack developer
-          and keep growing. If you think I could be a good fit, I’d love to talk.
-        </p>
+        <h2 className={styles.sectionTitle}>{t(tr.about.openToOpportunities)}</h2>
+        <p className={`muted ${styles.text}`}>{t(tr.about.ctaText)}</p>
 
         <div className="btnRow">
-          {/* Opens user's default mail app with a prefilled subject */}
           <a className="btn btnPrimary" href={mailtoHref}>
-            Contact
+            {t(tr.about.contact)}
           </a>
-
           <a className="btn" href={site.github} target="_blank" rel="noopener noreferrer">
             GitHub ↗
           </a>
-          <a
-            className="btn"
-            href={site.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a className="btn" href={site.linkedin} target="_blank" rel="noopener noreferrer">
             LinkedIn ↗
           </a>
         </div>

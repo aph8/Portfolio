@@ -2,6 +2,14 @@
   border-top: 1px solid var(--border);
 }
 
+.footer a {
+  transition: color 150ms ease;
+}
+
+.footer a:hover {
+  color: var(--text);
+}
+
 .inner {
   max-width: 980px;
   margin: 0 auto;

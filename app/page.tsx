@@ -1,27 +1,36 @@
+"use client";
+
 import Link from "next/link";
 import { projects } from "@/data/projects";
 import styles from "@/styles/home.module.scss";
 import { site } from "@/data/site";
 import Image from "next/image";
+import { useT } from "@/context/LanguageContext";
+import { tr } from "@/data/translations";
 
 export default function HomePage() {
+  const t = useT();
   const featured = projects.slice(0, 3);
 
   return (
     <div className={styles.wrapper}>
-      <section className="card">
-        <h1 className={styles.heroTitle}>Hi, my name is {site.shortName} </h1>
-        <p className={`muted ${styles.heroText}`}>
-          Software developer with a focus on full-stack web apps. I build clean, reliable
-          systems and enjoy turning ideas into usable products.
-        </p>
+      <section className={`card ${styles.heroSection}`}>
+        <div className={styles.heroBadge}>
+          <span className={styles.heroBadgeDot} />
+          <span className="tag">{t(tr.home.badge)}</span>
+        </div>
+
+        <h1 className={styles.heroTitle}>
+          {t(tr.home.heroIntro)} {site.shortName}
+        </h1>
+        <p className={styles.heroText}>{t(tr.home.heroText)}</p>
 
         <div className="btnRow">
           <Link className="btn btnPrimary" href="/projects">
-            View projects
+            {t(tr.home.viewProjects)}
           </Link>
           <Link className="btn" href="/cv">
-            View CV
+            {t(tr.home.viewCv)}
           </Link>
           <a
             className="btn"
@@ -29,16 +38,16 @@ export default function HomePage() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            LinkedIn
+            LinkedIn ↗
           </a>
         </div>
       </section>
 
       <section>
         <div className={styles.sectionHead}>
-          <h2 className={styles.sectionTitle}>Featured projects</h2>
+          <h2 className={styles.sectionTitle}>{t(tr.home.featured)}</h2>
           <Link className="muted" href="/projects">
-            See all →
+            {t(tr.home.seeAll)}
           </Link>
         </div>
 
@@ -65,31 +74,35 @@ export default function HomePage() {
                 <h3 className={styles.cardTitle}>{p.title}</h3>
                 <div className="pill">{p.kind}</div>
 
-                <p className={`muted ${styles.cardText}`}>{p.description}</p>
+                <p className={`muted ${styles.cardText}`}>
+                  {t({ en: p.description, is: p.descriptionIs ?? p.description })}
+                </p>
 
                 <p className={`muted ${styles.cardStack}`}>
-                  <strong>Stack:</strong> {p.stack.join(", ")}
+                  <strong>{t(tr.common.stack)}</strong> {p.stack.join(", ")}
                 </p>
 
                 <div className="btnRow">
                   {p.live && (
                     <a
-                      className="btn"
+                      className="btn btnPrimary"
                       href={p.live}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      Live
+                      {t(tr.projects.live)}
                     </a>
                   )}
-                  <a
-                    className="btn"
-                    href={p.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    GitHub
-                  </a>
+                  {p.github && (
+                    <a
+                      className="btn"
+                      href={p.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      GitHub ↗
+                    </a>
+                  )}
                 </div>
               </div>
             </article>

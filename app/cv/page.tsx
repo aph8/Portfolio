@@ -1,14 +1,18 @@
+"use client";
+
 import styles from "@/styles/cv.module.scss";
 import { site } from "@/data/site";
+import { useT } from "@/context/LanguageContext";
+import { tr } from "@/data/translations";
 
 export default function CvPage() {
+  const t = useT();
+
   return (
     <div className={styles.wrapper}>
       <header className={styles.header}>
-        <h1 className={styles.title}>CV</h1>
-        <p className={`muted ${styles.subtitle}`}>
-          Quick overview + direct links. Download the PDF for the full version.
-        </p>
+        <h1 className={styles.title}>{t(tr.cv.title)}</h1>
+        <p className={`muted ${styles.subtitle}`}>{t(tr.cv.subtitle)}</p>
       </header>
 
       <div className={styles.layout}>
@@ -20,12 +24,12 @@ export default function CvPage() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Download CV (PDF)
+              {t(tr.cv.download)}
             </a>
 
             <div className={styles.links}>
               <a className={styles.link} href={`mailto:${site.email}`}>
-                <span className="muted">Email</span>
+                <span className="muted">{t(tr.cv.email)}</span>
                 <span>{site.email}</span>
               </a>
 
@@ -46,7 +50,7 @@ export default function CvPage() {
                 rel="noopener noreferrer"
               >
                 <span className="muted">LinkedIn</span>
-                <span>View profile</span>
+                <span>{t(tr.cv.viewProfile)}</span>
               </a>
             </div>
           </div>
@@ -54,7 +58,7 @@ export default function CvPage() {
           <div className={styles.divider} />
 
           <div className={styles.sidebarSection}>
-            <h3 className={styles.sidebarTitle}>Focus</h3>
+            <h3 className={styles.sidebarTitle}>{t(tr.cv.focus)}</h3>
             <div className={styles.chips}>
               {["Full-stack", "Next.js", "Node/Express", "Databases", "Clean UX"].map(
                 (s) => (
@@ -69,69 +73,57 @@ export default function CvPage() {
           <div className={styles.divider} />
 
           <div className={styles.sidebarSection}>
-            <h3 className={styles.sidebarTitle}>Highlights</h3>
+            <h3 className={styles.sidebarTitle}>{t(tr.cv.highlights)}</h3>
             <ul className={`muted ${styles.compactList}`}>
-              <li>Built full-stack apps end-to-end</li>
-              <li>Comfortable with APIs + DBs</li>
-              <li>Strong focus on readability</li>
+              <li>{t(tr.cv.h1)}</li>
+              <li>{t(tr.cv.h2)}</li>
+              <li>{t(tr.cv.h3)}</li>
             </ul>
           </div>
         </aside>
 
         <main className={styles.main}>
           <section className="card">
-            <h2 className={styles.sectionTitle}>Summary</h2>
-            <p className={`muted ${styles.text}`}>
-              Newly graduated Computer Scientist focused on full-stack development. I
-              build reliable web applications with maintainable code, clean UI, and
-              practical architecture.
-            </p>
+            <h2 className={styles.sectionTitle}>{t(tr.cv.summary)}</h2>
+            <p className={`muted ${styles.text}`}>{t(tr.cv.summaryText)}</p>
           </section>
 
           <section className="card">
-            <h2 className={styles.sectionTitle}>Skills</h2>
+            <h2 className={styles.sectionTitle}>{t(tr.cv.skills)}</h2>
 
             <div className={styles.skillGrid}>
               <div className={styles.skillBlock}>
-                <h3 className={styles.skillTitle}>Frontend</h3>
+                <h3 className={styles.skillTitle}>{t(tr.cv.frontend)}</h3>
                 <div className={styles.chips}>
                   {["React", "Next.js", "TypeScript", "HTML", "SCSS"].map((s) => (
-                    <span key={s} className={styles.chip}>
-                      {s}
-                    </span>
+                    <span key={s} className={styles.chip}>{s}</span>
                   ))}
                 </div>
               </div>
 
               <div className={styles.skillBlock}>
-                <h3 className={styles.skillTitle}>Backend</h3>
+                <h3 className={styles.skillTitle}>{t(tr.cv.backend)}</h3>
                 <div className={styles.chips}>
                   {["Node.js", "Express", "REST APIs", "Prisma", "Zod"].map((s) => (
-                    <span key={s} className={styles.chip}>
-                      {s}
-                    </span>
+                    <span key={s} className={styles.chip}>{s}</span>
                   ))}
                 </div>
               </div>
 
               <div className={styles.skillBlock}>
-                <h3 className={styles.skillTitle}>Database</h3>
+                <h3 className={styles.skillTitle}>{t(tr.cv.database)}</h3>
                 <div className={styles.chips}>
                   {["PostgreSQL", "SQLite"].map((s) => (
-                    <span key={s} className={styles.chip}>
-                      {s}
-                    </span>
+                    <span key={s} className={styles.chip}>{s}</span>
                   ))}
                 </div>
               </div>
 
               <div className={styles.skillBlock}>
-                <h3 className={styles.skillTitle}>Tools</h3>
+                <h3 className={styles.skillTitle}>{t(tr.cv.tools)}</h3>
                 <div className={styles.chips}>
                   {["Git", "Docker", "Vercel"].map((s) => (
-                    <span key={s} className={styles.chip}>
-                      {s}
-                    </span>
+                    <span key={s} className={styles.chip}>{s}</span>
                   ))}
                 </div>
               </div>
@@ -139,37 +131,37 @@ export default function CvPage() {
           </section>
 
           <section className="card">
-            <h2 className={styles.sectionTitle}>Experience</h2>
+            <h2 className={styles.sectionTitle}>{t(tr.cv.experience)}</h2>
 
             <div className={styles.item}>
               <div className={styles.itemTop}>
                 <div>
-                  <div className={styles.itemTitle}>Web Developer & Sales</div>
+                  <div className={styles.itemTitle}>{t(tr.cv.jobTitle)}</div>
                   <div className="muted">Grímur Kokkur ehf</div>
                 </div>
                 <div className={`muted ${styles.itemMeta}`}>2024 – Present</div>
               </div>
               <ul className={`muted ${styles.list}`}>
-                <li>Contributed to the company website and content workflows.</li>
-                <li>Worked on updates and improvements with a usability focus.</li>
+                <li>{t(tr.cv.jobBullet1)}</li>
+                <li>{t(tr.cv.jobBullet2)}</li>
               </ul>
             </div>
           </section>
 
           <section className="card">
-            <h2 className={styles.sectionTitle}>Education</h2>
+            <h2 className={styles.sectionTitle}>{t(tr.cv.education)}</h2>
 
             <div className={styles.item}>
               <div className={styles.itemTop}>
                 <div>
-                  <div className={styles.itemTitle}>BSc in Computer Science</div>
-                  <div className="muted">University of Iceland</div>
+                  <div className={styles.itemTitle}>{t(tr.cv.degree)}</div>
+                  <div className="muted">{t(tr.cv.university)}</div>
                 </div>
-                <div className={`muted ${styles.itemMeta}`}>Completed</div>
+                <div className={`muted ${styles.itemMeta}`}>{t(tr.cv.completed)}</div>
               </div>
               <ul className={`muted ${styles.list}`}>
-                <li>Projects across web, mobile, algorithms, and applied development.</li>
-                <li>Interests: full-stack engineering and practical system design.</li>
+                <li>{t(tr.cv.eduBullet1)}</li>
+                <li>{t(tr.cv.eduBullet2)}</li>
               </ul>
             </div>
           </section>

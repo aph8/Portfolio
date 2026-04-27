@@ -1,20 +1,40 @@
-export type ProjectKind = "Web" | "RL / Python" | "Mobile (Android)" | "Game (Java)";
+export type ProjectKind = "Web" | "Client Website" | "RL / Python" | "Mobile (Android)" | "Game (Java)";
 
 export type Project = {
   title: string;
   description: string;
+  descriptionIs?: string;
   stack: string[];
   kind: ProjectKind;
   image?: string; // NOTE: public/ is served from "/"
   live?: string;
-  github: string;
+  github?: string;
 };
 
 export const projects: Project[] = [
   {
+    title: "BioBú",
+    description:
+      "A full-stack marketing website for an Icelandic organic dairy company. Built with Next.js and DatoCMS, featuring a product catalog, news & editorial pages, an interactive farm map, and ISR-powered content delivery.",
+    descriptionIs:
+      "Fullbúin markaðsvefsíða fyrir íslenskt lífrænt mjólkurfyrirtæki. Byggð með Next.js og DatoCMS með vörulista, fréttasíður, gagnvirkan búakort og ISR-drifna efnismiðlun.",
+    stack: [
+      "Next.js",
+      "TypeScript",
+      "SCSS Modules",
+      "DatoCMS",
+      "Vercel",
+    ],
+    kind: "Client Website",
+    image: "/www.biobu.is_.png",
+    live: "https://biobu.is",
+  },
+  {
     title: "Learning Platform",
     description:
       "Full-stack platform where teachers create courses/assignments and students get instant feedback.",
+    descriptionIs:
+      "Full-stack síða þar sem kennarar búa til námskeið/verkefni og nemendur fá tafarlausar endurgjafar.",
     stack: [
       "Next.js",
       "React",
@@ -39,6 +59,8 @@ export const projects: Project[] = [
     title: "Grímur Kokkur (Draft)",
     description:
       "Rebuilding a business site with a headless CMS and modern Next.js architecture.",
+    descriptionIs:
+      "Endurbygging heimasíðu Gríms Kokks með headless CMS og nútíma Next.js uppbyggingu.",
     stack: [
       "Next.js",
       "TypeScript",
@@ -57,6 +79,8 @@ export const projects: Project[] = [
   {
     title: "Laxveiðiár Íslands",
     description:
+      "Website displaying salmon rivers in Iceland with a region filter and individual pages for each river showing fishing season, permitted bait, and catch statistics (2024).",
+    descriptionIs:
       "Vefur sem sýnir laxveiðiár á Íslandi með landshluta-síu og sérsíður fyrir hverja á með veiðitímabili, leyfilegu agni og veiðitölum (2024).",
     stack: ["Next.js", "TypeScript", "SCSS", "Vercel"],
     kind: "Web",
@@ -67,6 +91,8 @@ export const projects: Project[] = [
   {
     title: "RL_agents_for_Backgammon",
     description:
+      "Reinforcement learning agents for Backgammon (code-only) — runnable and reproducible locally.",
+    descriptionIs:
       "Reinforcement learning agentar fyrir Backgammon (code-only) — keyranlegt og endurtakanlegt locally.",
     stack: ["Python", "Reinforcement Learning"],
     kind: "RL / Python",
@@ -74,14 +100,16 @@ export const projects: Project[] = [
   },
   {
     title: "LearningSquare (Android)",
-    description: "Android application fyrir Learning Square platform (code-only / repo).",
+    description: "Android application for the Learning Square platform (code-only / repo).",
+    descriptionIs: "Android forrit fyrir Learning Square vettvanginn (code-only / repo).",
     stack: ["Kotlin", "Android"],
     kind: "Mobile (Android)",
     github: "https://github.com/Mkaldalons/LearningSquare",
   },
   {
     title: "SapukuluBaratta",
-    description: "Leikur / application skrifað í Java (code-only / repo).",
+    description: "Game / application written in Java (code-only / repo).",
+    descriptionIs: "Leikur / forrit skrifað í Java (code-only / repo).",
     stack: ["Java"],
     kind: "Game (Java)",
     github: "https://github.com/dannith/SapukuluBaratta",

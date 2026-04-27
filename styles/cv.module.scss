@@ -33,7 +33,7 @@
 
 .sidebar {
   position: sticky;
-  top: 14px;
+  top: calc(72px + 14px);
   padding: 16px;
   height: fit-content;
 }
