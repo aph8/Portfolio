@@ -1,36 +1,52 @@
-# Portfolio
+# Andri Páll Helgason – Portfolio
 
-Personal portfolio website built with Next.js (App Router) to showcase selected projects and key links.
+Personal portfolio website built with Next.js showcasing projects, CV, and contact links. Supports Icelandic and English.
+
+**Live:** https://andripall.is
 
 ## Tech Stack
 
-- Next.js (App Router)
-- React
+- Next.js 14 (App Router)
 - TypeScript
-- SCSS (global styles + modules)
+- SCSS (global styles + CSS Modules)
+- Vercel
 
 ## Quick Start
 
+```bash
 npm install
 npm run dev
+```
 
 Open: http://localhost:3000
 
-## Project Data
+## Structure
 
-Update site info and projects here:
+```
+app/             # Pages (home, about, projects, cv)
+components/      # NavBar, Footer, Providers
+context/         # Language context (EN/IS toggle)
+data/            # site.ts, projects.ts, translations.ts
+styles/          # SCSS modules per page + globals
+public/          # Static assets and project screenshots
+```
 
-- src/data/site.ts — name + social links
-- src/data/projects.ts — projects shown on the site (title, description, stack, links, optional image)
+## Data Files
+
+- `data/site.ts` — name, email, and social links
+- `data/projects.ts` — projects (title, description, stack, image, links)
+- `data/translations.ts` — all UI strings in English and Icelandic
 
 ## Production
 
+```bash
 npm run build
 npm start
+```
 
 ## Deployment
 
-Deploy on Vercel: import the GitHub repo and deploy.
+Deployed on Vercel. Push to `main` to trigger a new deployment.
 
 ## License
 
