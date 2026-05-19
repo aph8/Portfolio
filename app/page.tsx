@@ -15,31 +15,67 @@ export default function HomePage() {
   return (
     <div className={styles.wrapper}>
       <section className={`card ${styles.heroSection}`}>
-        <div className={styles.heroBadge}>
-          <span className={styles.heroBadgeDot} />
-          <span className="tag">{t(tr.home.badge)}</span>
-        </div>
+        <div className={styles.heroInner}>
+          <div className={styles.heroLeft}>
+            <div className={styles.heroBadge}>
+              <span className={styles.heroBadgeDot} />
+              <span className="tag">{t(tr.home.badge)}</span>
+            </div>
 
-        <h1 className={styles.heroTitle}>
-          {t(tr.home.heroIntro)} {site.shortName}
-        </h1>
-        <p className={styles.heroText}>{t(tr.home.heroText)}</p>
+            <h1 className={styles.heroTitle}>
+              {t(tr.home.heroIntro)} {site.shortName}
+            </h1>
+            <p className={styles.heroText}>{t(tr.home.heroText)}</p>
 
-        <div className="btnRow">
-          <Link className="btn btnPrimary" href="/projects">
-            {t(tr.home.viewProjects)}
-          </Link>
-          <Link className="btn" href="/cv">
-            {t(tr.home.viewCv)}
-          </Link>
-          <a
-            className="btn"
-            href={site.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            LinkedIn ↗
-          </a>
+            <div className={styles.heroStack}>
+              {[
+                { label: "Frontend", chips: ["Next.js", "React", "TypeScript", "SCSS"] },
+                { label: "Backend",  chips: ["Node.js", "Express", "PostgreSQL", "Prisma"] },
+                { label: "Tools",    chips: ["Git", "Docker", "Vercel"] },
+              ].map((group) => (
+                <div key={group.label} className={styles.heroStackRow}>
+                  <span className={styles.heroStackLabel}>{group.label}</span>
+                  <div className={styles.heroChips}>
+                    {group.chips.map((s) => (
+                      <span key={s} className={styles.heroChip}>{s}</span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="btnRow">
+              <Link className="btn btnPrimary" href="/projects">
+                {t(tr.home.viewProjects)}
+              </Link>
+              <Link className="btn" href="/cv">
+                {t(tr.home.viewCv)}
+              </Link>
+            </div>
+
+          </div>
+
+          <div className={styles.heroIdCard}>
+            <div className={styles.heroMonogram}>APH</div>
+            <div className={styles.heroIdName}>{site.name}</div>
+            <div className={styles.heroIdMeta}>
+              <span>BSc Computer Science</span>
+              <span>University of Iceland</span>
+              <span>Reykjavík, Iceland</span>
+            </div>
+            <div className={styles.heroIdDivider} />
+            <div className={styles.heroSocials}>
+              <a className={styles.heroSocialLink} href={site.github} target="_blank" rel="noopener noreferrer">
+                GitHub ↗
+              </a>
+              <a className={styles.heroSocialLink} href={site.linkedin} target="_blank" rel="noopener noreferrer">
+                LinkedIn ↗
+              </a>
+              <a className={styles.heroSocialLink} href={`mailto:${site.email}`}>
+                {site.email}
+              </a>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -102,6 +138,11 @@ export default function HomePage() {
                     >
                       GitHub ↗
                     </a>
+                  )}
+                  {p.caseStudy && (
+                    <Link className="btn" href={`/projects/${p.slug}`}>
+                      {t(tr.projects.viewCaseStudy)}
+                    </Link>
                   )}
                 </div>
               </div>

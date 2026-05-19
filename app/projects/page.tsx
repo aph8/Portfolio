@@ -3,6 +3,7 @@
 import { projects } from "@/data/projects";
 import styles from "@/styles/projects.module.scss";
 import Image from "next/image";
+import Link from "next/link";
 import { useT } from "@/context/LanguageContext";
 import { tr } from "@/data/translations";
 
@@ -65,6 +66,11 @@ export default function ProjectsPage() {
                   >
                     GitHub ↗
                   </a>
+                )}
+                {p.caseStudy && (
+                  <Link className="btn" href={`/projects/${p.slug}`}>
+                    {t(tr.projects.viewCaseStudy)}
+                  </Link>
                 )}
               </div>
             </div>
