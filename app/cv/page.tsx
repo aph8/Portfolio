@@ -20,7 +20,7 @@ export default function CvPage() {
           <div className={styles.sidebarTop}>
             <a
               className="btn btnPrimary"
-              href="/Andri_Pall_Helgason_CV.pdf"
+              href="/Andri_cv.pdf"
               target="_blank"
               rel="noopener noreferrer"
             >
